@@ -68,7 +68,10 @@ textarea::-webkit-scrollbar {
 }
 
 .container .todoLists {
-    margin-top: 20px;
+max-height: 380px;
+overflow-y: auto;
+margin-top: 20px;
+padding-right: 10px;
 
 }
 
@@ -146,8 +149,19 @@ textarea::-webkit-scrollbar {
     font-size: 14px;
     border-radius: 4px;
     cursor: pointer;
+    pointer-events: none;
+    white-space: nowrap;
 }
 
 .clear-button:hover{
+
     background-color: #0e4bf1;
+}
+
+
+    
+@media screen and (max-width: 350px){
+    .container{
+        padding: 25px 10px;
+    }
 }

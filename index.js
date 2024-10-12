@@ -5,7 +5,17 @@ const inputField = document.querySelector(".input-field textarea"),
 
 function allTasks() {
     let tasks = document.querySelectorAll(".pending");
-    pendingNum.textContent = tasks.length === 0? "no" : tasks.length;
+    pendingNum.textContent = tasks.length === 0 ? "no" : tasks.length;
+    let allLists = document.querySelectorAll(".list");
+    if (allLists.length > 0) {
+        todoLists.style.marginTop = "20px";
+        clearButton.style.pointerEvents = "auto";
+        return;
+    }
+    todoLists.style.marginTop = "0px";
+    clearButton.style.pointerEvents = "auto";
+
+
     }
 
 inputField.addEventListener("keyup", (e) => {
@@ -18,7 +28,8 @@ inputField.addEventListener("keyup", (e) => {
         let liTag =  `<li class="list pending" onclick="handleStatus(this)">
             <input type="checkbox"/>
             <span class="task">${inputVal}</span>
-            <i class="uil uil-trash"></i> `;
+            <i class="uil uil-trash" onclick = "deleteTask(this)">
+            </i> `;
         
         todoLists.insertAdjacentHTML("beforeend", liTag);
         inputField.value = ""; //removing value from input gield
@@ -34,5 +45,18 @@ function handleStatus(e) {
     allTasks();
 
 }
+
+function deleteTask(e) {
+    e.parentElement.remove();
+    allTasks();
+}
+
+
+
+clearButton.addEventListener("click", () => {
+    todoLists.innerHTML = "";
+    allTasks();
+    
+});
 
 
